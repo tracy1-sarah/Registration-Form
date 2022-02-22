@@ -1,38 +1,57 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  background-color: #f7f7f7f7;
+}
+
+.img{
+    /* position: relative; */
+  background: url(./assets/images/bg8.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
+
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 100%;
+  padding: 3rem 0;
+  /* border: 1px solid black; */
+  /* right: 0; */
+  /* margin: 20px; */
+  max-width: 500px;
+  padding: 16px;
+  background-color: #f7f7f7f7;
+  
+}
+
+.title {
   text-align: center;
+  padding-bottom: 1rem;
+  /* font-weight: bold; */
+  font-size: 2rem;
+  /* color: blue; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.registration-form {
+  font-family: "Montserrat", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.form-control{
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
