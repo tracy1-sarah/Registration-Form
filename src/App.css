@@ -13,7 +13,6 @@ body {
 }
 
 .img{
-    /* position: relative; */
   background: url(./assets/images/bg8.jpg);
   background-size: cover;
   background-position: center;
@@ -21,6 +20,15 @@ body {
   filter: blur(1px);
   -webkit-filter: blur(1px);
 
+}
+
+.bg-img{
+  background: url(./assets/images/bg9.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 }
 
 .form-container {
@@ -31,27 +39,29 @@ body {
   z-index: 3;
   width: 100%;
   padding: 3rem 0;
-  /* border: 1px solid black; */
-  /* right: 0; */
-  /* margin: 20px; */
   max-width: 500px;
   padding: 16px;
   background-color: #f7f7f7f7;
   
 }
 
+
 .title {
   text-align: center;
   padding-bottom: 1rem;
-  /* font-weight: bold; */
   font-size: 2rem;
-  /* color: blue; */
 }
 
 .registration-form {
   font-family: "Montserrat", sans-serif;
 }
 
-.form-control{
+.signin {
+  padding: 1rem;
+  text-align: center;
+}
 
+.input-error{
+  color: red;
+  font-size: 1rem;
 }
