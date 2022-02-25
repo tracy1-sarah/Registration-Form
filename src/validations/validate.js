@@ -8,15 +8,15 @@ const validate = (inputs) => {
     }
     //email errors
     if(!inputs.email){
-        errors.email = 'Check Email'
+        errors.email = 'Check email'
     }else if(!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/.test(inputs.email)){
         errors.email ='Invalid email address';
     }
 
     //password errors
     if(!inputs.password || inputs.password.length < 6){
-        errors.password = 'Check Password'
-    }
+        errors.password = 'Maximum length of password is six.'
+    } 
   return errors;
    
 }

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import validate from "../validations/validate";
-
 
 function Home() {
   const [name, setName] = useState("");
@@ -13,6 +11,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const values = { name, username, password, email };
     const data = { name, username, password, email, errors };
     const validationErrors = validate(data);
     const noErrors = Object.keys(validationErrors).length === 0;
@@ -23,16 +22,66 @@ function Home() {
       console.log("Errors", validationErrors);
     }
 
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", data)
-      .then((response) => {
-        console.log(response);
+    const graphql = {
+      query: `mutation createUserAccount($name: String, $username: String, $password: String, $email: String) {
+        createUserAccount(data: {
+          name: $name, 
+          username: $username,
+          password: $password,
+          email: $email
+        }) {
+          data {
+            id,
+            attributes {
+              name,
+              email,
+              password,
+              username
+            }
+          }
+        }
+      }
+      `,
+      variables: {
+        name: values.name,
+        username: values.username,
+        password: values.password,
+        email: values.email,
+      },
+    };
+    fetch("http://localhost:1337/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(graphql),
+    })
+      .then((res) => {
+        return res.json();
       })
-      .catch((error) => {
-        console.log(error);
+      .then((resData) => {
+        if (resData.errors && resData.errors[0].status === 422) {
+          throw new Error("Validation Failed. Username has been used");
+        }
+        if (resData.errors) {
+          console.log(resData.errors)
+          throw new Error("Cannot create User");
+        }
+        console.log(resData);
+        alert(
+          "User with username " +
+            resData.data.createUserAccount.data.attributes.username +
+            " has been created"
+        );
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
+  // const onFinish = (values) => {
+
+  // };
 
   return (
     <div>
@@ -42,7 +91,7 @@ function Home() {
         <div className="registration-form row">
           <div className="col-md-12">
             <form onSubmit={handleSubmit} className="container">
-            <div className="input-error">{errors.inputs}</div>
+              <div className="input-error">{errors.inputs}</div>
               <div className="mb-3">
                 <label className="form-label">Name</label>
                 <input
@@ -82,7 +131,7 @@ function Home() {
                 <div className="input-error">{errors.password}</div>
               </div>
               <div className="mb-3">
-                <label className="form-label">Email address</label>
+                <label className="form-label">Email Address</label>
                 <input
                   value={email}
                   onChange={(e) => {

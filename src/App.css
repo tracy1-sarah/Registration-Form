@@ -23,7 +23,7 @@ body {
 }
 
 .bg-img{
-  background: url(./assets/images/bg9.jpg);
+  background: url(./assets/images/bg13.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -36,12 +36,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 2;
   width: 100%;
   padding: 3rem 0;
   max-width: 500px;
   padding: 16px;
   background-color: #f7f7f7f7;
+  border-radius: 1rem;
   
 }
 
@@ -50,6 +51,7 @@ body {
   text-align: center;
   padding-bottom: 1rem;
   font-size: 2rem;
+  font-weight: bold;
 }
 
 .registration-form {
