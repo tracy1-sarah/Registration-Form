@@ -4,7 +4,7 @@ const validate = (inputs) => {
     const errors = {};
     //required
     if(!inputs.name && !inputs.username && !inputs.email && !inputs.password){
-        errors.inputs = 'Fields cannot be empty'
+        errors.inputs = 'Fields cannot be empty';
     }
     //email errors
     if(!inputs.email){
@@ -14,7 +14,7 @@ const validate = (inputs) => {
     }
 
     //password errors
-    if(!inputs.password || inputs.password.length < 6){
+    if(!inputs.password || inputs.password.length < 8){
         errors.password = 'Maximum length of password is six.'
     } 
   return errors;

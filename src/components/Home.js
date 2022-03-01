@@ -59,12 +59,13 @@ function Home() {
       .then((res) => {
         return res.json();
       })
+
       .then((resData) => {
         if (resData.errors && resData.errors[0].status === 422) {
           throw new Error("Validation Failed. Username has been used");
         }
         if (resData.errors) {
-          console.log(resData.errors)
+          console.log(resData.errors);
           throw new Error("Cannot create User");
         }
         console.log(resData);
@@ -79,13 +80,18 @@ function Home() {
       });
   };
 
-  // const onFinish = (values) => {
-
-  // };
-
   return (
     <div>
+      <div>
+        {" "}
+        <button type="submit" className="btn btn-primary btn-user">
+          <Link className="link" to="dashboard">
+            View Users
+          </Link>
+        </button>
+      </div>
       <div className="img"></div>
+
       <div className="form-container">
         <h1 className="title">Registration Form</h1>
         <div className="registration-form row">

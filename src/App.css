@@ -23,7 +23,7 @@ body {
 }
 
 .bg-img{
-  background: url(./assets/images/bg13.jpg);
+  background: url(./assets/images/bg8.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -67,3 +67,21 @@ body {
   color: red;
   font-size: 1rem;
 }
+.link{
+  text-decoration: none;
+  color: #ffffff;
+}
+.link:hover{
+  color: #ffffff;
+}
+.btn-user{
+  position: absolute;
+  top: 55px;
+  right: 15rem;
+  z-index: 10;
+}
+.paginate p{
+  margin-bottom: 0;
+}
+
+ /* Dialog */
