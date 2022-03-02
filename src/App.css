@@ -12,17 +12,16 @@ body {
   background-color: #f7f7f7f7;
 }
 
-.img{
+.img {
   background: url(./assets/images/bg8.jpg);
   background-size: cover;
   background-position: center;
   height: 100vh;
   filter: blur(1px);
   -webkit-filter: blur(1px);
-
 }
 
-.bg-img{
+.bg-img {
   background: url(./assets/images/bg8.jpg);
   background-size: cover;
   background-position: center;
@@ -43,9 +42,7 @@ body {
   padding: 16px;
   background-color: #f7f7f7f7;
   border-radius: 1rem;
-  
 }
-
 
 .title {
   text-align: center;
@@ -63,25 +60,27 @@ body {
   text-align: center;
 }
 
-.input-error{
+.input-error {
   color: red;
   font-size: 1rem;
 }
-.link{
+.link {
   text-decoration: none;
   color: #ffffff;
 }
-.link:hover{
+.link:hover {
   color: #ffffff;
 }
-.btn-user{
+.btn-user {
   position: absolute;
   top: 55px;
   right: 15rem;
   z-index: 10;
 }
-.paginate p{
+.paginate p {
   margin-bottom: 0;
 }
 
- /* Dialog */
+.icons {
+  margin: 3px;
+}
