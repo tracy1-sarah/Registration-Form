@@ -5,17 +5,19 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Stack from '@mui/material/Stack';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
-
-function EditModal({ handleClose, userId }) {
-  const [users, setUsers] = React.useState([]);
+function EditModal({ handleClose, userId}) {
+  const [users, setUsers] = useState([]);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [open, setOpen] = useState(false);
 
   const UserList = async () => {
     const response = await axios.get(
@@ -31,23 +33,37 @@ function EditModal({ handleClose, userId }) {
     const data = {
       name: name,
       username: username,
-      //   email:email,
+        email:email,
     };
     axios
       .put(`http://localhost:1337/api/user-accounts/${userId}`, {
         data,
       })
       .then((res) => {
-          handleClose();
-          window.location.reload()
+        setOpen(true);
+        // handleClose();
+        window.location.reload();
       });
   };
   React.useEffect(() => {
     UserList();
-  }, []);
+  },[]);
+
+  // Snackbar
+  const SnackBarClick = () => {
+    setOpen(true);
+  };
+
+  const handleClosed = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
-    <div>
+    <>
       <DialogTitle>
         <h1 className="title">Edit Form</h1>
       </DialogTitle>
@@ -102,12 +118,20 @@ function EditModal({ handleClose, userId }) {
       </DialogContent>
       <DialogActions>
         <Button type="submit" onClick={UpdateDetails}>
-
           Update
         </Button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClosed}>
+          <Alert
+            onClose={handleClosed}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Updated successfully!
+          </Alert>
+        </Snackbar>
         <Button onClick={handleClose}>Close</Button>
       </DialogActions>
-    </div>
+    </>
   );
 }
 

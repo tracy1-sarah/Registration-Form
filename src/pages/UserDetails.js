@@ -123,7 +123,6 @@ function UserDetails() {
 
   //Edit modal
   const [open, setOpen] = React.useState(false);
-  const [opens, setOpens] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -134,6 +133,8 @@ function UserDetails() {
   };
 
   //Delete Modal
+  const [opens, setOpens] = React.useState(false);
+
   const handleClickOpened = () => {
     setOpens(true);
   };
@@ -170,6 +171,8 @@ function UserDetails() {
               <TableRow
                 key={list.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                hover role="checkbox"
+                
               >
                 <TableCell align="left">{list?.id}</TableCell>
                 <TableCell align="left">{list?.attributes.name}</TableCell>
@@ -193,6 +196,7 @@ function UserDetails() {
                       className="icons"
                       onClick={() => {
                         handleClickOpened();
+                        setUserId(list?.id)
                       }}
                       style={{ color: "#E61B10", cursor: "pointer" }}
                     />
