@@ -45,6 +45,14 @@ function DeleteModal({ handleClose, userId }) {
   },[]);
 
    // Snackbar
+
+   const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal } = state;
+
    const SnackBarClick = () => {
     setOpen(true);
   };
@@ -66,7 +74,7 @@ function DeleteModal({ handleClose, userId }) {
       </DialogContent>
       <DialogActions>
         <Button type="submit" onClick={DeleteDetails}>Delete</Button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClosed}>
+        <Snackbar open={open} autoHideDuration={8000} onClose={handleClosed} anchorOrigin={{ vertical, horizontal }}>
           <Alert
             onClose={handleClosed}
             severity="success"
