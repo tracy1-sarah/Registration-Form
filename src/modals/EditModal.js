@@ -128,7 +128,7 @@ function EditModal({ handleClose, userId }) {
         </Button>
         <Snackbar
           open={open}
-          autoHideDuration={8000}
+          autoHideDuration={10000}
           onClose={handleClosed}
           anchorOrigin={{ vertical, horizontal }}
         >

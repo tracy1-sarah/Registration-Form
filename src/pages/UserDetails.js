@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -22,6 +22,8 @@ import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Dialog from "@mui/material/Dialog";
+import { ThemeContext } from '@emotion/react'
+
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -143,9 +145,16 @@ function UserDetails() {
     setOpens(false);
   };
 
+  const darkTheme = useContext(ThemeContext)
+  const themeStyles = {
+      backgroundColor: darkTheme ? '#FFF' : '#333',
+      color: darkTheme ? '#FFF' : '#333', 
+      padding:'2rem'
+  }
+
   return (
-    <div>
-      <TableContainer component={Paper}>
+    <div >
+      <TableContainer component={Paper} style={themeStyles}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
@@ -167,14 +176,14 @@ function UserDetails() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users?.data?.map((list) => (
+            {users?.data?.map((list, num) => (
               <TableRow
                 key={list.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 hover role="checkbox"
                 
               >
-                <TableCell align="left">{list?.id}</TableCell>
+                <TableCell align="left">{num+1}</TableCell>
                 <TableCell align="left">{list?.attributes.name}</TableCell>
                 <TableCell align="left">{list?.attributes.username}</TableCell>
                 <TableCell align="left">{list?.attributes.email}</TableCell>
