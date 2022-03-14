@@ -155,7 +155,7 @@ function Dashboard() {
           <DrawerHeader />
 
           <ThemeContext.Provider value={darktheme}>
-            <NotificationsIcon onClick={toggleTheme} /> Dark Mode
+            <NotificationsIcon onClick={toggleTheme}/> Dark Mode
             <UserDetails />
           </ThemeContext.Provider>
         </Box>

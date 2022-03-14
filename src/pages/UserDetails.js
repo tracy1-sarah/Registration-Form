@@ -19,11 +19,12 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import EditModal from "../modals/EditModal";
 import DeleteModal from "../modals/DeleteModal";
 import axios from "axios";
-import EditIcon from "@mui/icons-material/Edit";
+// import Icon from "@mdi/react";
+// import {mdiAccountEditOutline } from "@mdi/js";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Dialog from "@mui/material/Dialog";
-import { ThemeContext } from '@emotion/react'
-
+import { Button } from "@mui/material";
+import { ThemeContext } from "@emotion/react";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -106,7 +107,6 @@ function UserDetails() {
     UserList();
   }, []);
 
-
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -145,32 +145,44 @@ function UserDetails() {
     setOpens(false);
   };
 
-  const darkTheme = useContext(ThemeContext)
+  const darkTheme = useContext(ThemeContext);
   const themeStyles = {
-      backgroundColor: darkTheme ? '#FFF' : '#333',
-      color: darkTheme ? '#FFF' : '#333', 
-      padding:'2rem'
-  }
+    backgroundColor: darkTheme ? "#FFF" : "#333",
+    color: darkTheme ? "#FFF" : "#333",
+    padding: "2rem",
+  };
 
   return (
-    <div >
+    <div>
       <TableContainer component={Paper} style={themeStyles}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>
+              <TableCell style={{ color: darkTheme ? "#333" : "#FFF" }}>
                 <b>id</b>
               </TableCell>
-              <TableCell align="left">
+              <TableCell
+                align="left"
+                style={{ color: darkTheme ? "#333" : "#FFF" }}
+              >
                 <b>Name</b>
               </TableCell>
-              <TableCell align="left">
+              <TableCell
+                align="left"
+                style={{ color: darkTheme ? "#333" : "#FFF" }}
+              >
                 <b>Username</b>
               </TableCell>
-              <TableCell align="left">
+              <TableCell
+                align="left"
+                style={{ color: darkTheme ? "#333" : "#FFF" }}
+              >
                 <b>Email</b>
               </TableCell>
-              <TableCell align="left">
+              <TableCell
+                align="left"
+                style={{ color: darkTheme ? "#333" : "#FFF" }}
+              >
                 <b>Action</b>
               </TableCell>
             </TableRow>
@@ -180,35 +192,75 @@ function UserDetails() {
               <TableRow
                 key={list.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                hover role="checkbox"
-                
+                hover
+                role="checkbox"
               >
-                <TableCell align="left">{num+1}</TableCell>
-                <TableCell align="left">{list?.attributes.name}</TableCell>
-                <TableCell align="left">{list?.attributes.username}</TableCell>
-                <TableCell align="left">{list?.attributes.email}</TableCell>
+                <TableCell
+                  align="left"
+                  style={{ color: darkTheme ? "#333" : "#FFF" }}
+                >
+                  {num + 1}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{ color: darkTheme ? "#333" : "#FFF" }}
+                >
+                  {list?.attributes.name}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{ color: darkTheme ? "#333" : "#FFF" }}
+                >
+                  {list?.attributes.username}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  style={{ color: darkTheme ? "#333" : "#FFF" }}
+                >
+                  {list?.attributes.email}
+                </TableCell>
                 <TableCell className="icons" align="left">
                   {
-                    <EditIcon
-                      className="icons"
-                      list={list}
+                    <Button
+                    style={{ marginRight: "0.5rem"}}
+                    color="success"
+                      variant="outlined"
+                  //     startIcon={
+                  //       <Icon
+                  //   path={mdiAccountEditOutline }
+                  //   size={1}
+                  //   horizontal
+                  //   vertical
+                  //   color="#808080"
+                  //   rotate={180}
+                  // />
+                  //     }
                       onClick={() => {
                         handleClickOpen();
                         setUserId(list?.id);
                       }}
-                      style={{ color: "#6FD92E", cursor: "pointer" }}
-                    />
+                    >
+                      Edit
+                    </Button>
                   }
 
                   {
-                    <DeleteOutlineIcon
-                      className="icons"
+                    <Button
+                    color="error"
+                      variant="outlined"
+                      startIcon={
+                        <DeleteOutlineIcon
+                          className="icons"
+                          style={{ color: "#E61B10", cursor: "pointer" }}
+                        />
+                      }
                       onClick={() => {
                         handleClickOpened();
-                        setUserId(list?.id)
+                        setUserId(list?.id);
                       }}
-                      style={{ color: "#E61B10", cursor: "pointer" }}
-                    />
+                    >
+                      Delete
+                    </Button>
                   }
                 </TableCell>
               </TableRow>
@@ -216,23 +268,40 @@ function UserDetails() {
           </TableBody>
           <TableFooter>
             <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                className="paginate"
-                colSpan={3}
-                count={users?.data?.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    "aria-label": "rows per page",
-                  },
-                  native: true,
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
+              <TableCell colSpan={5}>
+                <div className="d-flex justify-content-end">
+                  <TablePagination
+                    rowsPerPageOptions={[
+                      5,
+                      10,
+                      25,
+                      { label: "All", value: -1 },
+                    ]}
+                    className={
+                      darkTheme
+                        ? "lightModeIcon paginate"
+                        : " darkModeIcon paginate"
+                    }
+                    colSpan={5}
+                    style={{
+                      borderBottom: "none",
+                      color: darkTheme ? "#333" : "#FFF",
+                    }}
+                    count={users?.data?.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    SelectProps={{
+                      inputProps: {
+                        "aria-label": "rows per page",
+                      },
+                      native: true,
+                    }}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    ActionsComponent={TablePaginationActions}
+                  />
+                </div>
+              </TableCell>
             </TableRow>
           </TableFooter>
         </Table>

@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap");
 * {
   margin: 0;
@@ -82,7 +83,16 @@ body {
  
 }
 
-.icons {
-  margin: 2px;
+.edit-icon {
+  /* margin: 2px; */
+  font-size: 0.5rem;
 }
 
+
+.lightModeIcon .css-78trlr-MuiButtonBase-root-MuiIconButton-root.Mui-disabled{
+  color: #333 !important;
+}
+
+.darkModeIcon .css-78trlr-MuiButtonBase-root-MuiIconButton-root.Mui-disabled{
+  color: #FFF !important;
+}
