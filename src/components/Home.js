@@ -83,7 +83,6 @@ function Home() {
   return (
     <div>
       <div>
-        {" "}
         <button type="submit" className="btn btn-primary btn-user">
           <Link className="link" to="dashboard">
             View Users

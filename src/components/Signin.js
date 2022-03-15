@@ -15,7 +15,7 @@ function Signin() {
       const noErrors = Object.keys(validationErrors).length === 0;
       setErrors(validationErrors);
       if(noErrors){
-        console.log("User logged in " + data)
+        console.log("User logged in ", data)
       }else{
         console.log("Errors", validationErrors)
       }
